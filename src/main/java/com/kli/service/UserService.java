@@ -15,7 +15,7 @@ import com.kli.dao.CmsContentDao;
 import com.kli.dao.MybatisDao;
 import com.kli.dao.UserDao;
 import com.kli.service.base.CrudService;
-import com.kli.tools.CacheUtils;
+import com.kli.cache.CacheUtils;
 
 @Service(value="userService")
 public class UserService extends CrudService<UserDao, User> {
@@ -40,13 +40,22 @@ public class UserService extends CrudService<UserDao, User> {
 		return dao.findList(user);
 	}
 
-
+    /**
+     * 通过注解方式读取缓存数据
+     * @param id
+     * @return
+     */
 	@Cacheable(value="userCache",key="#root.methodName + #id") 
 	public List<User> findAllUserCache(int id) {
 		log.info("findAllUser----read DB ");
 		return this.queryList(id);
 	}
-	
+
+    /**
+     * 通过CacheUtils读取缓存数据
+     * @param id
+     * @return
+     */
 	public List<User> findAllUserCache2(int id) {
 		List<User> list = (List<User>) CacheUtils.get("findAllUserCache2_" + id);
 		if(list == null){

@@ -43,9 +43,7 @@ public class TestUserService extends BaseJunitTest{
 	@Test
 	public void testQueryListCache1(){
 		System.out.println("------testQueryListCache1-----");
-		List<User> users = userService.findAllUserCache(1);
-		System.out.println("-------");
-		users = userService.findAllUserCache(1);
+		List<User> users = userService.findAllUserCache(2);
 		System.out.println("-------");
 		users = userService.findAllUserCache(2);
 		System.out.println("-------");
@@ -60,8 +58,6 @@ public class TestUserService extends BaseJunitTest{
 		System.out.println("-------");
 		
 		users = userService.findAllUserCache2(3);
-		System.out.println("-------");
-		users = userService.findAllUserCache2(4);
 		System.out.println("-------");
 		System.out.println(users.size());
 		

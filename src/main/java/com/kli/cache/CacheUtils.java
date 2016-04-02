@@ -1,8 +1,9 @@
-package com.kli.tools;
+package com.kli.cache;
 
-import net.sf.ehcache.Cache;
-import net.sf.ehcache.CacheManager;
-import net.sf.ehcache.Element;
+import com.kli.tools.SpringContextHolder;
+import org.apache.shiro.cache.Cache;
+import org.apache.shiro.cache.CacheManager;
+
 
 /**
  * Cache工具类
@@ -11,7 +12,7 @@ import net.sf.ehcache.Element;
  */
 public class CacheUtils {
 	
-	private static CacheManager cacheManager = ((CacheManager)SpringContextHolder.getBean("cacheManager"));
+	private static SpringCacheManagerWrapper  cacheManager = (SpringCacheManagerWrapper) SpringContextHolder.getBean("shiroCacheManager");
 
 	private static final String SYS_CACHE = "sysCache";
 
@@ -49,8 +50,7 @@ public class CacheUtils {
 	 * @return
 	 */
 	public static Object get(String cacheName, String key) {
-		Element element = getCache(cacheName).get(key);
-		return element==null?null:element.getObjectValue();
+		return getCache(cacheName).get(key);
 	}
 
 	/**
@@ -60,8 +60,7 @@ public class CacheUtils {
 	 * @param value
 	 */
 	public static void put(String cacheName, String key, Object value) {
-		Element element = new Element(key, value);
-		getCache(cacheName).put(element);
+		getCache(cacheName).put(key, value);
 	}
 
 	/**
@@ -74,18 +73,11 @@ public class CacheUtils {
 	}
 	
 	/**
-	 * 获得一个Cache，没有则创建一个。
 	 * @param cacheName
 	 * @return
 	 */
 	private static Cache getCache(String cacheName){
-		Cache cache = cacheManager.getCache(cacheName);
-		if (cache == null){
-			cacheManager.addCache(cacheName);
-			cache = cacheManager.getCache(cacheName);
-			cache.getCacheConfiguration().setEternal(true);
-		}
-		return cache;
+		return cacheManager.getCache(cacheName);
 	}
 
 	public static CacheManager getCacheManager() {

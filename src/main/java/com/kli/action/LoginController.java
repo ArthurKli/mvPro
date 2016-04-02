@@ -110,10 +110,10 @@ private TdMenuService tdMenuService;
 	 */
 	@SuppressWarnings("unchecked")
 	public static boolean isValidateCodeLogin(String useruame, boolean isFail, boolean clean){
-		Map<String, Integer> loginFailMap = (Map<String, Integer>)com.kli.tools.CacheUtils.get("loginFailMap");
+		Map<String, Integer> loginFailMap = (Map<String, Integer>)com.kli.cache.CacheUtils.get("loginFailMap");
 		if (loginFailMap==null){
 			loginFailMap = new HashMap();
-			com.kli.tools.CacheUtils.put("loginFailMap", loginFailMap);
+			com.kli.cache.CacheUtils.put("loginFailMap", loginFailMap);
 		}
 		Integer loginFailNum = loginFailMap.get(useruame);
 		if (loginFailNum==null){

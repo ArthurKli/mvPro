@@ -7,7 +7,7 @@
   	<!-- 项目属性 -->
 	<properties>
 			<!-- main version setting -->
-		<org.springframework.version>4.0.8.RELEASE</org.springframework.version>
+		<org.springframework.version>4.1.1.RELEASE</org.springframework.version>
 				<ehcache.version>2.6.9</ehcache.version>
 		<ehcache-web.version>2.0.4</ehcache-web.version>
 		<slf4j.version>1.7.7</slf4j.version>
@@ -235,9 +235,15 @@
 		<dependency>
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>
-			 <version>2.5.1</version>
+			 <version>2.7.3</version>
 		</dependency>
-		<!-- CACHE end -->
+
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>1.6.4.RELEASE</version>
+        </dependency>
+        <!-- CACHE end -->
 		<!-- Spring 整合Shiro需要的依赖 -->
 
 	<dependency>
