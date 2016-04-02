@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kli.dao.ExamQuestionDao" >
+ 
+<!-- exam_question table all fields -->
+<sql id="Select_Column_List">
+			id AS "id",
+ 				exam_paper_id AS "examPaperId",
+ 				question_info AS "questionInfo",
+ 				question_desc AS "questionDesc",
+ 				std_answer AS "stdAnswer",
+ 				enable AS "enable",
+ 				type AS "type",
+ 				priority AS "priority",
+ 				create_time AS "createTime",
+ 				update_time AS "updateTime"
+	</sql>      
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+		<if test="id != null and id != ''" >
+	    and id =  #{id}
+	</if>
+		<if test="examPaperId != null and examPaperId != ''" >
+	    and exam_paper_id =  #{examPaperId}
+	</if>
+		<if test="questionInfo != null and questionInfo != ''" >
+	    and question_info =  #{questionInfo}
+	</if>
+		<if test="questionDesc != null and questionDesc != ''" >
+	    and question_desc =  #{questionDesc}
+	</if>
+		<if test="stdAnswer != null and stdAnswer != ''" >
+	    and std_answer =  #{stdAnswer}
+	</if>
+		<if test="enable != null and enable != ''" >
+	    and enable =  #{enable}
+	</if>
+		<if test="type != null and type != ''" >
+	    and type =  #{type}
+	</if>
+		<if test="priority != null and priority != ''" >
+	    and priority =  #{priority}
+	</if>
+		<if test="createTime != null and createTime != ''" >
+	    and create_time =  #{createTime}
+	</if>
+		<if test="updateTime != null and updateTime != ''" >
+	    and update_time =  #{updateTime}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="insert">
+<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into exam_question(id,exam_paper_id,question_info,question_desc,std_answer,enable,type,priority,create_time,update_time)
+ values(#{id},#{examPaperId},#{questionInfo},#{questionDesc},#{stdAnswer},#{enable},#{type},#{priority},now(),now())
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" >
+  update exam_question set exam_paper_id=#{examPaperId},question_info=#{questionInfo},question_desc=#{questionDesc},std_answer=#{stdAnswer},enable=#{enable},type=#{type},priority=#{priority},create_time=now(),update_time=now() where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective">
+	update exam_question set 
+	<trim  suffixOverrides="," >
+	<if test="examPaperId != null  ">
+		exam_paper_id=#{examPaperId},
+	</if>
+	<if test="questionInfo != null  ">
+		question_info=#{questionInfo},
+	</if>
+	<if test="questionDesc != null  ">
+		question_desc=#{questionDesc},
+	</if>
+	<if test="stdAnswer != null  ">
+		std_answer=#{stdAnswer},
+	</if>
+	<if test="enable != null  ">
+		enable=#{enable},
+	</if>
+	<if test="type != null  ">
+		type=#{type},
+	</if>
+	<if test="priority != null  ">
+		priority=#{priority},
+	</if>
+	<if test="createTime != null  ">
+		create_time=#{createTime},
+	</if>
+	<if test="updateTime != null  ">
+		update_time=#{updateTime},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete">
+	delete from exam_question
+ where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 考试试卷 -->
+
+<select id="queryById" resultType="ExamQuestion">
+		select <include refid="Select_Column_List" /> 
+	 from exam_question where id = #{id}
+</select>
+
+<select id="get" resultType="ExamQuestion">
+		select <include refid="Select_Column_List" /> 
+	 from exam_question where id = #{id}
+</select>
+
+<!-- 考试试卷 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer" >
+	select count(1) from exam_question 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询考试试卷列表 -->
+	<select id="findList" resultType="ExamQuestion">
+		SELECT
+		<include refid="Select_Column_List" />
+		FROM exam_question
+		<include refid="Example_Where_Clause" />
+		<if test="page !=null and page.orderBy != null and page.orderBy != ''">
+		ORDER BY ${page.orderBy}
+		</if>
+	</select>
+	
+	<select id="findAllList" resultType="ExamQuestion">
+		select * from exam_question
+		<if test="page !=null and page.orderBy != null and page.orderBy != ''">
+		ORDER BY ${page.orderBy}
+		</if>
+	</select>
+  	
+</mapper>   

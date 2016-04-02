@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kli.dao.TdRoleDao" >
+ 
+<!-- td_role table all fields -->
+<sql id="Select_Column_List">
+			a.id AS "id",
+ 				a.role_name AS "roleName",
+ 				a.role_desc AS "roleDesc",
+ 				a.create_time AS "createTime",
+ 				a.update_time AS "updateTime",
+ 				a.status AS "status",
+ 				GROUP_CONCAT(c.perm_type) AS "permissions"
+	</sql>      
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+WHERE a.id=b.role_id AND b.perm_id=c.id
+<trim  suffixOverrides="," >
+		<if test="id != null and id != ''" >
+	    and a.id =  #{id}
+	</if>
+		<if test="roleName != null and roleName != ''" >
+	    and a.role_name =  #{roleName}
+	</if>
+		<if test="roleDesc != null and roleDesc != ''" >
+	    and a.role_desc =  #{roleDesc}
+	</if>
+		<if test="createTime != null and createTime != ''" >
+	    and a.create_time =  #{createTime}
+	</if>
+		<if test="updateTime != null and updateTime != ''" >
+	    and a.update_time =  #{updateTime}
+	</if>
+		<if test="status != null and status != ''" >
+	    and a.status =  #{status}
+	</if>
+			<if test="permissions != null and permissions != ''" >
+	    and c.perm_type LIKE 
+					CONCAT('%', #{permissions}, '%')
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="insert" keyProperty="id"  useGeneratedKeys="true">
+  insert into td_role(id,role_name,role_desc,permissions,create_time,update_time,status)
+ values(#{id},#{roleName},#{roleDesc},#{permissions},now(),now(),#{status})
+</insert>
+
+<insert id="insertRolePerms">
+  insert into td_role_perm(role_id, perm_id, perm_type)
+ values(#{roleId},#{permId},#{permType})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" >
+  update td_role set role_name=#{roleName},role_desc=#{roleDesc},permissions=#{permissions},create_time=now(),update_time=now(),status=#{status} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective">
+	update td_role set 
+	<trim  suffixOverrides="," >
+	<if test="roleName != null  ">
+		role_name=#{roleName},
+	</if>
+	<if test="roleDesc != null  ">
+		role_desc=#{roleDesc},
+	</if>
+	<if test="permissions != null  ">
+		permissions=#{permissions},
+	</if>
+	<if test="createTime != null  ">
+		create_time=#{createTime},
+	</if>
+	<if test="updateTime != null  ">
+		update_time=#{updateTime},
+	</if>
+	<if test="status != null  ">
+		status=#{status},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete">
+	delete from td_role
+ where id = #{id}
+</delete>
+
+<delete id="deleteRolePerms" parameterType="int">
+	delete from td_role_perm
+ where role_id = #{role_id}
+</delete>
+ 
+<!-- 根据id查询 系统角色 -->
+
+<select id="queryById" resultType="TdRole">
+		select *
+	 from td_role AS a where a.id = #{id}
+</select>
+
+<select id="get" resultType="TdRole">
+		select *
+	 from td_role AS a  where a.id = #{id}
+</select>
+
+<!-- 系统角色 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer" >
+	select count(1) from td_role 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询系统角色列表 -->
+	<select id="findList" resultType="TdRole">
+		SELECT
+		<include refid="Select_Column_List" />
+		FROM td_role AS a, td_role_perm AS b, td_permissions AS c 
+		<include refid="Example_Where_Clause" />
+		GROUP BY a.id
+		<if test="page !=null and page.orderBy != null and page.orderBy != ''">
+		ORDER BY ${page.orderBy}
+		</if>
+	</select>
+	
+	<select id="findAllList" resultType="TdRole">
+		select * from td_role AS a ,td_role_perm AS b, td_permissions AS c  GROUP BY a.id
+		<if test="page !=null and page.orderBy != null and page.orderBy != ''">
+		ORDER BY ${page.orderBy}
+		</if>
+	</select>
+  	
+</mapper>   

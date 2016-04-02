@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"classpath:/mybatis-3-mapper.dtd">
+<mapper namespace="com.kli.dao.GoodsDao">
+<sql id="cmsGoodsColumns">
+		g.goods_id AS "gid",
+		g.goods_name AS "goodsName",
+		g.goods_count AS "goodsCount",
+		g.goods_code AS "goodsCode"
+</sql>
+
+<select id="findAllList" resultType="Goods">
+		select * from goods
+</select>
+
+<select id="findList" resultType="Goods">
+		SELECT 
+			<include refid="cmsGoodsColumns"/>
+		FROM goods g
+		<where>
+			0 = 0
+			<if test="gid != null and gid != ''">
+				AND g.goods_id = #{gid}
+			</if>
+			<if test="goodsName != null and goodsName != ''">
+				AND g.goods_name LIKE 
+					CONCAT('%', #{goodsName}, '%')
+			</if>
+			<if test="goodsCode != null and goodsCode != ''">
+				AND g.goods_code LIKE 
+					CONCAT('%', #{goodsCode}, '%')
+			</if>
+			
+			<if test="goodsCount != null and goodsCount != ''">
+				AND g.goods_count  = #{goodsCount}
+			</if>
+			<!-- ${sqlMap.dsf}-->
+		</where>
+		
+	</select>
+
+<select id="doSpeciQuery" resultType="Goods">
+		SELECT * FROM goods ORDER BY goods_id ASC  LIMIT 1 
+</select>
+
+<select id="get" resultType="Goods">
+		SELECT * FROM goods where goods_id = #{id}
+</select>
+
+	<update id="update">
+		UPDATE goods SET 	
+			goods_name = #{goodsName},
+			goods_count = #{goodsCount},
+			goods_code = #{goodsCode}
+			
+		WHERE goods_id = #{gid}
+	</update>
+	
+		<delete id="delete" >
+		delete from goods where goods_id=#{gid}
+	</delete>
+	
+
+<insert id="insert"
+		parameterType="com.kli.bean.Goods">
+		INSERT INTO goods(goods_name, goods_code, goods_count) 
+		           values(#{goodsName}, #{goodsCode}, #{goodsCount})
+</insert>
+
+</mapper>
+

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kli.dao.CmsContentDao">
+<sql id="cmsContentColumns">
+		c.content_id AS "contentId",
+		c.category_id AS "categoryId",
+		c.content_title AS "contentTitle",
+		c.content_sub_title AS "contentSubTitle",		
+		c.content_description AS "contentDescription",
+		c.content_image AS "contentImage",
+		c.content_type AS "contentType",
+		c.content_source AS "contentSource",
+		c.content_path AS "contentPath",
+		c.content_content AS "contentContent",
+		c.content_status AS "contentStatus",
+		c.create_time AS "createTime",
+		c.create_user AS "createUser",
+		
+		c.modify_time AS "modifyTime",
+		c.modify_user AS "modifyUser",
+		c.content_extend AS "contentExtend",
+		c.content_priority AS "contentPriority"
+</sql>
+	
+	<sql id="commonCondition">
+		<where>
+			1=1
+			<if test="contentId!=null and contentId!=''"> and c.content_id=#{contentId} </if>
+			<if test="categoryId!=null and categoryId!=''"> and c.category_id=#{categoryId} </if>
+			<if test="contentTitle!=null and contentTitle!=''">
+			 AND c.content_title LIKE 
+					CONCAT('%', #{contentTitle}, '%')
+			 </if>
+			<if test="contentSource !=null and contentSource!=''"> and c.content_source=#{contentSource} </if>
+			<if test="contentSubTitle!=null and contentSubTitle!=''"> and c.content_sub_title=#{contentSubTitle} </if>
+			<if test="contentDescription!=null and contentDescription!=''"> and c.content_description=#{contentDescription} </if>
+			<if test="contentImage!=null and contentImage!=''"> and c.content_image=#{contentImage} </if>
+			<if test="contentType!=null and contentType!=''"> and c.content_type=#{contentType} </if>
+			<if test="contentPath!=null and contentPath!=''"> and c.content_path=#{contentPath} </if>
+			<if test="contentContent!=null and contentContent!=''"> and c.content_content=#{contentContent} </if>
+			<if test="contentStatus!=null and contentStatus!=''"> and c.content_status=#{contentStatus} </if>
+			<if test="createTime!=null and createTime!=''"> and c.create_time=#{createTime} </if>
+			<if test="createUser!=null and createUser!=''"> and c.create_user=#{createUser} </if>
+			<if test="modifyTime!=null and modifyTime!=''"> and c.modify_time=#{modifyTime} </if>
+			<if test="modifyUser!=null and modifyUser!=''"> and c.modify_user=#{modifyUser} </if>
+			<if test="contentExtend!=null and contentExtend!=''"> and c.content_extend=#{contentExtend} </if>
+			<if test="contentPriority!=null and contentPriority!=''"> and c.content_priority=#{contentPriority} </if>
+		</where>
+	</sql>
+
+	<select id="findAllList" resultType="CmsContent">
+		select * from cms_content c
+	</select>
+
+	<select id="findList" resultType="CmsContent">
+		SELECT
+		<include refid="cmsContentColumns" />
+		FROM cms_content c
+		<include refid="commonCondition" />
+
+	</select>
+	
+	<insert id="insert">
+insert into cms_content 
+		(content_id,category_id,content_title,content_sub_title,content_description,content_image,content_type,content_path,content_content,
+			content_status,create_time,modify_time,create_user,content_extend,content_priority,content_source)
+		 values(
+		 #{contentId},
+		 #{categoryId},
+		 #{contentTitle},
+		 #{contentSubTitle},
+		 #{contentDescription},
+		 #{contentImage},
+		 #{contentType},
+		 #{contentPath},
+		 #{contentContent},
+		 #{contentStatus},
+		 now(),
+		 #{modifyTime},
+		 #{createUser},
+		 #{contentExtend},
+		 #{contentPriority},
+		 #{contentSource}
+		 )
+	</insert>
+	
+<select id="get" resultType="CmsContent">
+		SELECT * FROM cms_content where content_id = #{contentId}
+</select>
+	
+	
+	<update id="update" >
+		update cms_content c set c.modify_time = now()
+			<if test="categoryId!=null and categoryId!=''"> , c.category_id=#{categoryId} </if>
+			<if test="contentTitle!=null and contentTitle!=''"> , c.content_title=#{contentTitle} </if>
+			<if test="contentDescription!=null and contentDescription!=''"> , c.content_description=#{contentDescription} </if>
+			<if test="contentType!=null and contentType!=''"> , c.content_type=#{contentType} </if>
+			<if test="contentPath!=null and contentPath!=''"> , c.content_path=#{contentPath} </if>
+			<if test="contentContent!=null and contentContent!=''"> , c.content_content=#{contentContent} </if>
+			<if test="contentStatus!=null and contentStatus!=''"> , c.content_status=#{contentStatus} </if>
+			<if test="createTime!=null and createTime!=''"> , c.create_time=#{createTime} </if>
+			<if test="createUser!=null and createUser!=''"> , c.create_user=#{createUser} </if>
+			<if test="modifyTime!=null and modifyTime!=''"> , c.modify_time=#{modifyTime} </if>
+			<if test="modifyUser!=null and modifyUser!=''"> , c.modify_user=#{modifyUser} </if>
+			<if test="contentExtend!=null and contentExtend!=''"> , c.content_extend=#{contentExtend} </if>
+			<if test="contentPriority!=null and contentPriority!=''"> , c.content_priority=#{contentPriority} </if>
+		    where c.content_id = #{contentId}
+	</update>
+	
+	<delete id="delete">
+		delete from cms_content where content_id = #{contentId}
+	</delete>
+	
+	
+</mapper>
+

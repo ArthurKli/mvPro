@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kli.dao.CategoryDao">
+<sql id="cmsCategoryColumns">
+		c.category_id AS "categoryId",
+		c.category_name AS "categoryName",
+		c.category_description AS "categoryDescription",
+		c.category_levelCode AS "categoryLevelcode",
+		
+		c.category_href AS "categoryHref",
+		c.category_image AS "categoryImage",
+		c.category_priority AS "categoryPriority",
+		c.category_status AS "categoryStatus",
+		c.category_enable AS "categoryEnable",
+		c.category_delete AS "categoryDelete",
+		c.create_time AS "createTime",
+		c.create_user AS "createUser",
+		c.modify_time AS "modifyTime",
+		
+		c.modify_user AS "modifyUser",
+		c.category_extend AS "categoryExtend"
+</sql>
+	
+	<sql id="commonCondition">
+		<where>
+			1=1
+			<if test="categoryId!=null and categoryId!=''"> and c.category_id=#{categoryId} </if>
+			<if test="categoryName!=null and categoryName!=''"> and c.category_name=#{categoryName} </if>
+			<if test="categoryDescription!=null and categoryDescription!=''"> and c.category_description=#{categoryDescription} </if>
+			<if test="categoryLevelcode!=null and categoryLevelcode!=''"> and c.category_levelCode=#{categoryLevelcode} </if>
+			<if test="categoryHref!=null and categoryHref!=''"> and c.category_href=#{categoryHref} </if>
+			<if test="categoryImage!=null and categoryImage!=''"> and c.category_image=#{categoryImage} </if>
+			<if test="categoryPriority!=null and categoryPriority!=''"> and c.category_priority=#{categoryPriority} </if>
+			<if test="categoryStatus!=null and categoryStatus!=''"> and c.category_status=#{categoryStatus} </if>
+			<if test="categoryEnable!=null and categoryEnable!=''"> and c.category_enable=#{categoryEnable} </if>
+			<if test="categoryDelete!=null and categoryDelete!=''"> and c.category_delete=#{categoryDelete} </if>
+			<if test="createTime!=null and createTime!=''"> and c.create_time=#{createTime} </if>
+			<if test="createUser!=null and createUser!=''"> and c.create_user=#{createUser} </if>
+			<if test="modifyTime!=null and modifyTime!=''"> and c.modify_time=#{modifyTime} </if>
+			<if test="modifyUser!=null and modifyUser!=''"> and c.modify_user=#{modifyUser} </if>
+			<if test="categoryExtend!=null and categoryExtend!=''"> and c.category_extend=#{categoryExtend} </if>
+		</where>
+	</sql>
+
+	<select id="findAllList" resultType="CmsCategory">
+		select * from cms_category c
+	</select>
+
+	<select id="findList" resultType="CmsCategory">
+		SELECT
+		<include refid="cmsCategoryColumns" />
+		FROM cms_category c
+		<include refid="commonCondition" />
+
+	</select>
+	
+	<insert id="insert">
+		insert into cms_category 
+		(category_id,category_name,category_description,category_levelCode,category_href,category_image,
+			category_priority,category_status,category_enable,category_delete,create_time,create_user,category_extend)
+		 values(#{categoryId},
+		 #{categoryName},
+		 #{categoryDescription},
+		 #{categoryLevelcode},
+		 #{categoryHref},
+		 #{categoryImage},
+		 #{categoryPriority},
+		 #{categoryStatus},
+		 #{categoryEnable},
+		 #{categoryDelete},
+		 now(),
+		 #{createUser},
+		 #{categoryExtend})
+	</insert>
+	
+	<select id="get" resultType="CmsCategory">
+		SELECT * FROM cms_category where category_id = #{categoryId}
+</select>
+	
+	
+	<update id="update" >
+		update cms_category c set c.modify_time = now(),c.modify_user=#{modifyUser}
+			<if test="categoryName!=null and categoryName!=''">  c.category_name=#{categoryName} </if>
+			<if test="categoryDescription!=null and categoryDescription!=''">  c.category_description=#{categoryDescription} </if>
+			<if test="categoryLevelcode!=null and categoryLevelcode!=''">  c.category_levelCode=#{categoryLevelcode} </if>
+			<if test="categoryHref!=null and categoryHref!=''">  c.category_href=#{categoryHref} </if>
+			<if test="categoryImage!=null and categoryImage!=''">  c.category_image=#{categoryImage} </if>
+			<if test="categoryPriority!=null and categoryPriority!=''"> c.category_priority=#{categoryPriority} </if>
+			<if test="categoryStatus!=null and categoryStatus!=''"> c.category_status=#{categoryStatus} </if>
+			<if test="categoryEnable!=null and categoryEnable!=''"> c.category_enable=#{categoryEnable} </if>
+			<if test="categoryDelete!=null and categoryDelete!=''"> c.category_delete=#{categoryDelete} </if>
+			<if test="categoryExtend!=null and categoryExtend!=''">  c.category_extend=#{categoryExtend} </if>
+		    where category_id=#{categoryId}
+	</update>
+	
+	<delete id="delete">
+		delete from cms_category where category_id=#{categoryId}
+	</delete>
+	
+	
+</mapper>
+

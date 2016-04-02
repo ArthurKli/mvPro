@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kli.dao.TdUserDao" >
+ 
+<!-- td_user table all fields -->
+<sql id="Select_Column_List">
+			a.id AS "id",
+ 				a.password AS "password",
+ 				a.login_name AS "loginName",
+ 				a.true_name AS "trueName",
+ 				a.mobile AS "mobile",
+ 				a.email AS "email",
+ 				a.create_time AS "createTime",
+ 				a.update_time AS "updateTime",
+ 				a.last_login_time AS "lastLoginTime",
+ 				a.role_id AS "roleId",
+ 				b.role_name AS "roleName"
+	</sql>      
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where a.role_id = b.id
+<trim  suffixOverrides="," >
+		<if test="id != null and id != ''" >
+	    and a.id =  #{id}
+	</if>
+		<if test="password != null and password != ''" >
+	    and a.password =  #{password}
+	</if>
+	<if test="loginName != null and loginName != ''" >
+	    and a.login_name LIKE 
+					CONCAT('%', #{loginName}, '%')
+	</if>
+	<if test="trueName != null and trueName != ''" >
+	    and a.true_name LIKE 
+					CONCAT('%', #{trueName}, '%')
+	</if>
+		<if test="mobile != null and mobile != ''" >
+	    and a.mobile =  #{mobile}
+	</if>
+		<if test="email != null and email != ''" >
+	    and a.email =  #{email}
+	</if>
+		<if test="createTime != null and createTime != ''" >
+	    and a.create_time =  #{createTime}
+	</if>
+		<if test="updateTime != null and updateTime != ''" >
+	    and a.update_time =  #{updateTime}
+	</if>
+		<if test="lastLoginTime != null and lastLoginTime != ''" >
+	    and a.last_login_time =  #{lastLoginTime}
+	</if>
+		<if test="roleId != null and roleId != ''" >
+	    and a.role_id =  #{roleId}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="insert">
+<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into td_user(id,password,login_name,true_name,mobile,email,create_time,update_time,last_login_time,role_id)
+ values(#{id},#{password},#{loginName},#{trueName},#{mobile},#{email},now(),now(),#{lastLoginTime},#{roleId})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" >
+  update td_user set password=#{password},login_name=#{loginName},true_name=#{trueName},mobile=#{mobile},email=#{email},create_time=now(),update_time=now(),last_login_time=#{lastLoginTime},role_id=#{roleId} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective">
+	update td_user set 
+	<trim  suffixOverrides="," >
+	<if test="password != null  ">
+		password=#{password},
+	</if>
+	<if test="loginName != null  ">
+		login_name=#{loginName},
+	</if>
+	<if test="trueName != null  ">
+		true_name=#{trueName},
+	</if>
+	<if test="mobile != null  ">
+		mobile=#{mobile},
+	</if>
+	<if test="email != null  ">
+		email=#{email},
+	</if>
+	<if test="createTime != null  ">
+		create_time=#{createTime},
+	</if>
+	<if test="updateTime != null  ">
+		update_time=#{updateTime},
+	</if>
+	<if test="lastLoginTime != null  ">
+		last_login_time=#{lastLoginTime},
+	</if>
+	<if test="roleId != null  ">
+		role_id=#{roleId},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete">
+	delete from td_user
+ where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 系统用户 -->
+
+<select id="queryById" resultType="TdUser">
+		select <include refid="Select_Column_List" /> 
+	 from td_user a,td_role b where a.role_id = b.id AND a.id = #{id}
+</select>
+
+<select id="get" resultType="TdUser">
+		select <include refid="Select_Column_List" /> 
+	 from td_user a,td_role b where a.role_id = b.id AND a.id = #{id}
+</select>
+
+<!-- 系统用户 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer" >
+	select count(1) from td_user a,td_role b
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询系统用户列表 -->
+	<select id="findList" resultType="TdUser">
+		SELECT
+		<include refid="Select_Column_List" />
+		FROM td_user a,td_role b 
+		<include refid="Example_Where_Clause" />
+		<if test="page !=null and page.orderBy != null and page.orderBy != ''">
+		ORDER BY ${page.orderBy}
+		</if>
+	</select>
+	
+	<select id="findAllList" resultType="TdUser">
+		select a.*,b.role_name from td_user a,td_role b where a.role_id = b.id
+		<if test="page !=null and page.orderBy != null and page.orderBy != ''">
+		ORDER BY ${page.orderBy}
+		</if>
+	</select>
+  	
+</mapper>   

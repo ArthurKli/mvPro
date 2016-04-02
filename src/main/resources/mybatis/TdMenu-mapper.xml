@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kli.dao.TdMenuDao" >
+ 
+<!-- td_menu table all fields -->
+<sql id="Select_Column_List">
+			id AS "id",
+ 				menu_name AS "menuName",
+ 				menu_desc AS "menuDesc",
+ 				menu_code AS "menuCode",
+ 				menu_image AS "menuImage",
+ 				menu_href AS "menuHref",
+ 				menu_status AS "menuStatus",
+ 				menu_delete AS "menuDelete",
+ 				menu_enable AS "menuEnable",
+ 				create_time AS "createTime",
+ 				create_user AS "createUser",
+ 				modify_time AS "modifyTime",
+ 				modify_user AS "modifyUser",
+ 				menu_priority AS "menuPriority",
+ 				menu_extend AS "menuExtend",
+ 				menu_perms AS "menuPerms"
+	</sql>      
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+		<if test="id != null and id != ''" >
+	    and id =  #{id}
+	</if>
+		<if test="menuName != null and menuName != ''" >
+	    and menu_name =  #{menuName}
+	</if>
+		<if test="menuDesc != null and menuDesc != ''" >
+	    and menu_desc =  #{menuDesc}
+	</if>
+		<if test="menuCode != null and menuCode != ''" >
+	    and menu_code =  #{menuCode}
+	</if>
+		<if test="menuImage != null and menuImage != ''" >
+	    and menu_image =  #{menuImage}
+	</if>
+		<if test="menuHref != null and menuHref != ''" >
+	    and menu_href =  #{menuHref}
+	</if>
+		<if test="menuStatus != null and menuStatus != ''" >
+	    and menu_status =  #{menuStatus}
+	</if>
+		<if test="menuDelete != null and menuDelete != ''" >
+	    and menu_delete =  #{menuDelete}
+	</if>
+		<if test="menuEnable != null and menuEnable != ''" >
+	    and menu_enable =  #{menuEnable}
+	</if>
+		<if test="createTime != null and createTime != ''" >
+	    and create_time =  #{createTime}
+	</if>
+		<if test="createUser != null and createUser != ''" >
+	    and create_user =  #{createUser}
+	</if>
+		<if test="modifyTime != null and modifyTime != ''" >
+	    and modify_time =  #{modifyTime}
+	</if>
+		<if test="modifyUser != null and modifyUser != ''" >
+	    and modify_user =  #{modifyUser}
+	</if>
+		<if test="menuPriority != null and menuPriority != ''" >
+	    and menu_priority =  #{menuPriority}
+	</if>
+		<if test="menuExtend != null and menuExtend != ''" >
+	    and menu_extend =  #{menuExtend}
+	</if>
+		<if test="menuPerms != null and menuPerms != ''" >
+	    and menu_perms =  #{menuPerms}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="insert">
+<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into td_menu(id,menu_name,menu_desc,menu_code,menu_image,menu_href,menu_status,menu_delete,menu_enable,create_time,create_user,modify_time,modify_user,menu_priority,menu_extend,menu_perms)
+ values(#{id},#{menuName},#{menuDesc},#{menuCode},#{menuImage},#{menuHref},#{menuStatus},#{menuDelete},#{menuEnable},now(),#{createUser},#{modifyTime},#{modifyUser},#{menuPriority},#{menuExtend},#{menuPerms})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" >
+  update td_menu set menu_name=#{menuName},menu_desc=#{menuDesc},menu_code=#{menuCode},menu_image=#{menuImage},menu_href=#{menuHref},menu_status=#{menuStatus},menu_delete=#{menuDelete},menu_enable=#{menuEnable},create_time=now(),create_user=#{createUser},modify_time=#{modifyTime},modify_user=#{modifyUser},menu_priority=#{menuPriority},menu_extend=#{menuExtend},menu_perms=#{menuPerms} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective">
+	update td_menu set 
+	<trim  suffixOverrides="," >
+	<if test="menuName != null  ">
+		menu_name=#{menuName},
+	</if>
+	<if test="menuDesc != null  ">
+		menu_desc=#{menuDesc},
+	</if>
+	<if test="menuCode != null  ">
+		menu_code=#{menuCode},
+	</if>
+	<if test="menuImage != null  ">
+		menu_image=#{menuImage},
+	</if>
+	<if test="menuHref != null  ">
+		menu_href=#{menuHref},
+	</if>
+	<if test="menuStatus != null  ">
+		menu_status=#{menuStatus},
+	</if>
+	<if test="menuDelete != null  ">
+		menu_delete=#{menuDelete},
+	</if>
+	<if test="menuEnable != null  ">
+		menu_enable=#{menuEnable},
+	</if>
+	<if test="createTime != null  ">
+		create_time=#{createTime},
+	</if>
+	<if test="createUser != null  ">
+		create_user=#{createUser},
+	</if>
+	<if test="modifyTime != null  ">
+		modify_time=#{modifyTime},
+	</if>
+	<if test="modifyUser != null  ">
+		modify_user=#{modifyUser},
+	</if>
+	<if test="menuPriority != null  ">
+		menu_priority=#{menuPriority},
+	</if>
+	<if test="menuExtend != null  ">
+		menu_extend=#{menuExtend},
+	</if>
+	<if test="menuPerms != null  ">
+		menu_perms=#{menuPerms},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete">
+	delete from td_menu
+ where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 系统菜单栏 -->
+
+<select id="queryById" resultType="TdMenu">
+		select <include refid="Select_Column_List" /> 
+	 from td_menu where id = #{id}
+</select>
+
+<select id="get" resultType="TdMenu">
+		select <include refid="Select_Column_List" /> 
+	 from td_menu where id = #{id}
+</select>
+
+<!-- 系统菜单栏 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer" >
+	select count(1) from td_menu 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询系统菜单栏列表 -->
+	<select id="findList" resultType="TdMenu">
+		SELECT
+		<include refid="Select_Column_List" />
+		FROM td_menu
+		<include refid="Example_Where_Clause" />
+		ORDER BY menu_priority desc
+	</select>
+	
+	<select id="findAllList" resultType="TdMenu">
+		select * from td_menu ORDER BY menu_priority desc
+	</select>
+  	
+ 	<select id="getNextSubLevelCode" resultType="TdMenu">
+		select * from td_menu where menu_code LIKE CONCAT(#{parentCode}, '%') order by menu_code DESC limit 1 
+	</select>
+	
+  	<select id="getMenuListLikeLevelCode" resultType="TdMenu">
+		select * from td_menu where menu_code LIKE CONCAT(#{menuCode}, '%') order by menu_code DESC 
+	</select>
+  	
+</mapper>   
