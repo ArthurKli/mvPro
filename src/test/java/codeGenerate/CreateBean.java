@@ -262,8 +262,8 @@ public class CreateBean {
 	}
 
 	public Map<String, Object> getAutoCreateSql(String tableName) throws Exception {
-		Map sqlMap = new HashMap();
-		List columnDatas = getColumnDatas(tableName);
+		Map<String, Object> sqlMap = new HashMap();
+		List<ColumnData> columnDatas = getColumnDatas(tableName);
 		String columns = getColumnSplit(columnDatas);
 		String formatColumns = getFormatColumnSplit(columnDatas);
 		String[] columnList = getColumnList(columns);
@@ -290,6 +290,38 @@ public class CreateBean {
 		sb.append(columnsList[0]).append(" = #{").append(CommUtil.formatName(columnsList[0])).append("}");
 		return sb.toString();
 	}
+
+    /**
+     * 暂时不用  condition为空时会把整个表数据删除 这个太危险
+     * @param tableName
+     * @param columnList
+     * @return
+     */
+    private String getDeleteConditionSql(String tableName, List<ColumnData> columnList) {
+        StringBuffer sb = new StringBuffer();
+        ColumnData primaryData = (ColumnData) columnList.get(0);
+        sb.append("delete ");
+        sb.append("from ").append(tableName).append(" where 0=0 \n");
+        for (int i = 1; i < columnList.size(); i++) {
+            ColumnData data = (ColumnData) columnList.get(i);
+            String columnName = data.getColumnName();
+            if (columnName.equals(primaryData.getColumnName())){
+                continue;
+            }
+            sb.append("\t<if test=\"").append(CommUtil.formatName(columnName)).append(" != null");
+            if ("String".equals(data.getDataType())) {
+                sb.append(" and ").append(CommUtil.formatName(columnName)).append(" != ''");
+            }
+            sb.append(" \">\n\t\t");
+            sb.append(" and ").append(columnName + "=#{" + CommUtil.formatName(columnName) + "}\n");
+            sb.append("\t</if>\n");
+        }
+        sb.append(" and ").append(primaryData.getColumnName())
+                .append(" = #{")
+                .append(CommUtil.formatName(primaryData.getColumnName()))
+                .append("}");
+        return sb.toString();
+    }
 
 	public String getSelectByIdSql(String tableName, String[] columnsList) throws SQLException {
 		StringBuffer sb = new StringBuffer();
@@ -331,6 +363,8 @@ public class CreateBean {
 		return update;
 	}
 
+
+
 	public String getUpdateSelectiveSql(String tableName, List<ColumnData> columnList) throws SQLException {
 		StringBuffer sb = new StringBuffer();
 		ColumnData cd = (ColumnData) columnList.get(0);
@@ -338,7 +372,7 @@ public class CreateBean {
 		for (int i = 1; i < columnList.size(); i++) {
 			ColumnData data = (ColumnData) columnList.get(i);
 			String columnName = data.getColumnName();
-			sb.append("\t<if test=\"").append(CommUtil.formatName(columnName)).append(" != null ");
+			sb.append("\t<if test=\"").append(CommUtil.formatName(columnName)).append(" != null");
 
 			if ("String" == data.getDataType()) {
 				sb.append(" and ").append(CommUtil.formatName(columnName)).append(" != ''");

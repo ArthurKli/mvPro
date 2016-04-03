@@ -47,10 +47,11 @@ where 1=1
 	$!{SQL.updateSelective}
 </update>
 
-<!-- 删除记录 -->
+<!-- 根据主键删除记录 -->
 <delete id="delete">
 	$!{SQL.delete}
 </delete>
+
 
 <select id="get" resultType="${className}">
 		$!{SQL.selectById}

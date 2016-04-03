@@ -27,7 +27,7 @@ public class TestExamQuestionService extends BaseJunitTest{
 		ExamQuestion question = new ExamQuestion();
 		question.setId(100L);
 		
-		System.out.println(service.queryByCount(question));
+		System.out.println(service.getTotal(question));
 	}
 	
 	@Test

@@ -47,23 +47,24 @@ where 1=1
 <update id="updateBySelective">
 	update goods set 
 	<trim  suffixOverrides="," >
-	<if test="goodsName != null  ">
+	<if test="goodsName != null ">
 		goods_name=#{goodsName},
 	</if>
-	<if test="goodsCount != null  ">
+	<if test="goodsCount != null ">
 		goods_count=#{goodsCount},
 	</if>
-	<if test="goodsCode != null  ">
+	<if test="goodsCode != null ">
 		goods_code=#{goodsCode},
 	</if>
 	</trim> where goods_id=#{goodsId}
 </update>
 
-<!-- 删除记录 -->
+<!-- 根据主键删除记录 -->
 <delete id="delete">
 	delete from goods
  where goods_id = #{goodsId}
 </delete>
+
 
 <select id="get" resultType="Goods">
 		select <include refid="Select_Column_List" /> 

@@ -41,13 +41,13 @@ public class TestGoodsService extends BaseJunitTest{
 	
 	@Test
 	public void testGoodsListPage(){
-		
-		Page<Goods> page = goodsService.findPage(new Page<Goods>(2, 2),  new Goods());
+		Goods conditions = new Goods();
+        conditions.setGoodsCode("zxxxxxx");
+		Page<Goods> page = goodsService.findPage(new Page<Goods>(2, 2),  conditions);
 		System.out.println(page.getCount());
 		System.out.println(page.getTotalPage());
 		for (Goods goods : page.getList()) {
 			System.out.println(goods.toString());
-			
 		}
 	}
 	

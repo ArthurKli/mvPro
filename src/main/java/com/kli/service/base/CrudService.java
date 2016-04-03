@@ -66,7 +66,7 @@ public abstract class CrudService<D extends CrudDao<T>, T extends BaseEntity<T>>
 	}
 	
 	
-	public int queryByCount(T entity){
+	public int getTotal(T entity){
 		return dao.getTotal(entity);
 	}
 
