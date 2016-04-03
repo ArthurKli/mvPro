@@ -75,15 +75,15 @@ public class TestController {
         return "hello";
     }
 	
-	@RequestMapping("/allGoods")
-    public String queryAllGoods(HttpServletRequest request) {
-		
-		Goods goods = goodsService.speciQuery();
-		System.out.println(goods.toString());
-		
-		request.setAttribute("user", "speciQuery");
-        return "hello";
-    }
+//	@RequestMapping("/allGoods")
+//    public String queryAllGoods(HttpServletRequest request) {
+//
+//		Goods goods = goodsService.speciQuery();
+//		System.out.println(goods.toString());
+//
+//		request.setAttribute("user", "speciQuery");
+//        return "hello";
+//    }
 	
 	
 	/**

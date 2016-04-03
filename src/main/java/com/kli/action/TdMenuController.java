@@ -98,8 +98,8 @@ public class TdMenuController extends BaseController{
 		public ModelAndView toAddView(@RequestParam("categoryId") Long categoryId){
 			TdMenu category = tdMenuService.get(String.valueOf(categoryId));
 			
-			List<TdPermissions> allPermList = tdPermissionsService.findAllList(new TdPermissions());
-			List<TdMenu> menuList = tdMenuService.findAllList(new TdMenu());
+			List<TdPermissions> allPermList = tdPermissionsService.findList(new TdPermissions());
+			List<TdMenu> menuList = tdMenuService.findList(new TdMenu());
 			
 			
 			ModelAndView model = new ModelAndView("admin/menu/menuAdd");
@@ -166,8 +166,8 @@ public class TdMenuController extends BaseController{
 			List<TdMenu> menus = tdMenuService.getMenuListLikeLevelCode(menu.getMenuCode());
 			
 			model.addObject("category", tdMenuService.get(categoryId));
-			model.addObject("allPermList", tdPermissionsService.findAllList(new TdPermissions()));
-			model.addObject("menuList", tdMenuService.findAllList(new TdMenu()));
+			model.addObject("allPermList", tdPermissionsService.findList(new TdPermissions()));
+			model.addObject("menuList", tdMenuService.findList(new TdMenu()));
 			model.addObject("menu", menu);
 			model.addObject("isLeafMenu", menus.size()==1);
 			return model;

@@ -31,7 +31,7 @@ public class TdMenuService extends CrudService<TdMenuDao, TdMenu> {
 		
 		public String queryTree() {
 			
-			List<TdMenu> allList = dao.findAllList(new TdMenu());
+			List<TdMenu> allList = dao.findList(new TdMenu());
 			List<TdMenu> menuList = new ArrayList<TdMenu>();
 			Subject subject = SecurityUtils.getSubject();
 			for(TdMenu m : allList){

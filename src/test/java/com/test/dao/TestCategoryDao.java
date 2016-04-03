@@ -24,7 +24,7 @@ public class TestCategoryDao extends BaseJunitTest{
 	
 	@Test
 	public void testGetList(){
-		System.out.println(dao.findAllList(new CmsCategory()).size());
+		System.out.println(dao.findList(new CmsCategory()).size());
 		
 
 	}

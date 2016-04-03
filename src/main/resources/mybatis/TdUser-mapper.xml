@@ -126,7 +126,7 @@ where a.role_id = b.id
 </select>
 
 <!-- 系统用户 列表总数-->
-<select id="queryByCount" resultType="java.lang.Integer" >
+<select id="getTotal" resultType="java.lang.Integer" >
 	select count(1) from td_user a,td_role b
 	<include refid="Example_Where_Clause"/>
 </select>

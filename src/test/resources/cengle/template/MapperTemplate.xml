@@ -33,12 +33,7 @@ where 1=1
    
 
 <!-- 插入记录 -->
-<insert id="insert">
-#if  ($keyType =='02')
-<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
-	SELECT LAST_INSERT_ID()
-  </selectKey>
-#end
+<insert id="insert" keyProperty="$!{keyProperty}"  useGeneratedKeys="true">
   $!{SQL.insert}
 </insert>
 
@@ -56,19 +51,13 @@ where 1=1
 <delete id="delete">
 	$!{SQL.delete}
 </delete>
- 
-<!-- 根据id查询 ${codeName} -->
-
-<select id="queryById" resultType="${className}">
-		$!{SQL.selectById}
-</select>
 
 <select id="get" resultType="${className}">
 		$!{SQL.selectById}
 </select>
 
 <!-- ${codeName} 列表总数-->
-<select id="queryByCount" resultType="java.lang.Integer" >
+<select id="getTotal" resultType="java.lang.Integer" >
 	select count(1) from ${tableName} 
 	<include refid="Example_Where_Clause"/>
 </select>

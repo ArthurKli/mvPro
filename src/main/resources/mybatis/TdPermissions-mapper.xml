@@ -95,13 +95,7 @@ where 1=1
 	delete from td_role_perm
  where perm_id = #{perm_id}
 </delete>
- 
-<!-- 根据id查询 系统权限 -->
 
-<select id="queryById" resultType="TdPermissions">
-		select <include refid="Select_Column_List" /> 
-	 from td_permissions where id = #{id}
-</select>
 
 <select id="get" resultType="TdPermissions">
 		select <include refid="Select_Column_List" /> 
@@ -109,7 +103,7 @@ where 1=1
 </select>
 
 <!-- 系统权限 列表总数-->
-<select id="queryByCount" resultType="java.lang.Integer" >
+<select id="getTotal" resultType="java.lang.Integer" >
 	select count(1) from td_permissions 
 	<include refid="Example_Where_Clause"/>
 </select>

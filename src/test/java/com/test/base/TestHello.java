@@ -5,13 +5,12 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class TestHello {
-	
-	@Test
-	public void testOne(){
-		
-		String str = "abc";
-		
-		Assert.assertTrue("abc".equals(str));
-	}
+
+
+    public static void main(String[] args) {
+        String str = "是v搜狗";
+
+        System.out.println(str);
+    }
 
 }

@@ -1,71 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-"classpath:/mybatis-3-mapper.dtd">
-<mapper namespace="com.kli.dao.GoodsDao">
-<sql id="cmsGoodsColumns">
-		g.goods_id AS "gid",
-		g.goods_name AS "goodsName",
-		g.goods_count AS "goodsCount",
-		g.goods_code AS "goodsCode"
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kli.dao.GoodsDao" >
+ 
+<!-- goods table all fields -->
+<sql id="Select_Column_List">
+			goods_id AS "goodsId",
+ 				goods_name AS "goodsName",
+ 				goods_count AS "goodsCount",
+ 				goods_code AS "goodsCode"
+	</sql>      
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+		<if test="goodsId != null and goodsId != ''" >
+	    and goods_id =  #{goodsId}
+	</if>
+		<if test="goodsName != null and goodsName != ''" >
+	    and goods_name =  #{goodsName}
+	</if>
+		<if test="goodsCount != null and goodsCount != ''" >
+	    and goods_count =  #{goodsCount}
+	</if>
+		<if test="goodsCode != null and goodsCode != ''" >
+	    and goods_code =  #{goodsCode}
+	</if>
+</trim>
 </sql>
+   
 
-<select id="findAllList" resultType="Goods">
-		select * from goods
-</select>
-
-<select id="findList" resultType="Goods">
-		SELECT 
-			<include refid="cmsGoodsColumns"/>
-		FROM goods g
-		<where>
-			0 = 0
-			<if test="gid != null and gid != ''">
-				AND g.goods_id = #{gid}
-			</if>
-			<if test="goodsName != null and goodsName != ''">
-				AND g.goods_name LIKE 
-					CONCAT('%', #{goodsName}, '%')
-			</if>
-			<if test="goodsCode != null and goodsCode != ''">
-				AND g.goods_code LIKE 
-					CONCAT('%', #{goodsCode}, '%')
-			</if>
-			
-			<if test="goodsCount != null and goodsCount != ''">
-				AND g.goods_count  = #{goodsCount}
-			</if>
-			<!-- ${sqlMap.dsf}-->
-		</where>
-		
-	</select>
-
-<select id="doSpeciQuery" resultType="Goods">
-		SELECT * FROM goods ORDER BY goods_id ASC  LIMIT 1 
-</select>
-
-<select id="get" resultType="Goods">
-		SELECT * FROM goods where goods_id = #{id}
-</select>
-
-	<update id="update">
-		UPDATE goods SET 	
-			goods_name = #{goodsName},
-			goods_count = #{goodsCount},
-			goods_code = #{goodsCode}
-			
-		WHERE goods_id = #{gid}
-	</update>
-	
-		<delete id="delete" >
-		delete from goods where goods_id=#{gid}
-	</delete>
-	
-
-<insert id="insert"
-		parameterType="com.kli.bean.Goods">
-		INSERT INTO goods(goods_name, goods_code, goods_count) 
-		           values(#{goodsName}, #{goodsCode}, #{goodsCount})
+<!-- 插入记录 -->
+<insert id="insert" keyProperty="goodsId"  useGeneratedKeys="true">
+  insert into goods(goods_id,goods_name,goods_count,goods_code)
+ values(#{goodsId},#{goodsName},#{goodsCount},#{goodsCode})
 </insert>
 
-</mapper>
+<!-- 根据id，修改记录-->  
+ <update id="update" >
+  update goods set goods_name=#{goodsName},goods_count=#{goodsCount},goods_code=#{goodsCode} where goods_id=#{goodsId}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective">
+	update goods set 
+	<trim  suffixOverrides="," >
+	<if test="goodsName != null  ">
+		goods_name=#{goodsName},
+	</if>
+	<if test="goodsCount != null  ">
+		goods_count=#{goodsCount},
+	</if>
+	<if test="goodsCode != null  ">
+		goods_code=#{goodsCode},
+	</if>
+	</trim> where goods_id=#{goodsId}
+</update>
 
+<!-- 删除记录 -->
+<delete id="delete">
+	delete from goods
+ where goods_id = #{goodsId}
+</delete>
+
+<select id="get" resultType="Goods">
+		select <include refid="Select_Column_List" /> 
+	 from goods where goods_id = #{goodsId}
+</select>
+
+<!-- 璁㈠崟鍟嗗搧 列表总数-->
+<select id="getTotal" resultType="java.lang.Integer" >
+	select count(1) from goods 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询璁㈠崟鍟嗗搧列表 -->
+	<select id="findList" resultType="Goods">
+		SELECT
+		<include refid="Select_Column_List" />
+		FROM goods
+		<include refid="Example_Where_Clause" />
+		<if test="page !=null and page.orderBy != null and page.orderBy != ''">
+		ORDER BY ${page.orderBy}
+		</if>
+	</select>
+	
+	<select id="findAllList" resultType="Goods">
+		select * from goods
+		<if test="page !=null and page.orderBy != null and page.orderBy != ''">
+		ORDER BY ${page.orderBy}
+		</if>
+	</select>
+  	
+</mapper>   

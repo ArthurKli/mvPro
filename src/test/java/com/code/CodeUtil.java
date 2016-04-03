@@ -29,8 +29,8 @@ public class CodeUtil {
 
 	private static void config() {
 		/** 此处修改成你的 表名 和 中文注释***/
-		 String tableName="td_menu"; 
-		 String codeName ="系统菜单栏";//中文注释 
+		 String tableName="goods";
+		 String codeName ="订单商品";//中文注释
 		 String entityPackage ="";//实体包
 		 String keyType = FtlDef.KEY_TYPE_02;//主键生成方式 01:UUID  02:自增
 		CodeGenerateFactory.codeGenerate(tableName, codeName,entityPackage,keyType);

@@ -27,18 +27,6 @@ public class TestGoodsService extends BaseJunitTest{
 		
 		
 	}
-	@Test
-	public void testSpeciQuery(){
-		Goods goods = goodsService.speciQuery();
-		
-		System.out.println(goods.toString());
-		
-	}
-	
-	@Test
-	public void testQueryUserInGoods(){
-		goodsService.queryUserInGoods();
-	}
 	
 	@Test
 	public void testGoodsList(){

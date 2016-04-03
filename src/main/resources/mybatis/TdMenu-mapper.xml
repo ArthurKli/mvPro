@@ -151,13 +151,6 @@ where 1=1
 	delete from td_menu
  where id = #{id}
 </delete>
- 
-<!-- 根据id查询 系统菜单栏 -->
-
-<select id="queryById" resultType="TdMenu">
-		select <include refid="Select_Column_List" /> 
-	 from td_menu where id = #{id}
-</select>
 
 <select id="get" resultType="TdMenu">
 		select <include refid="Select_Column_List" /> 
@@ -165,7 +158,7 @@ where 1=1
 </select>
 
 <!-- 系统菜单栏 列表总数-->
-<select id="queryByCount" resultType="java.lang.Integer" >
+<select id="getTotal" resultType="java.lang.Integer" >
 	select count(1) from td_menu 
 	<include refid="Example_Where_Clause"/>
 </select>

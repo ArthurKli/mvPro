@@ -1,8 +1,11 @@
 package codeGenerate.factory;
 
+import codeGenerate.ColumnData;
 import codeGenerate.CommonPageParser;
 import codeGenerate.CreateBean;
 import codeGenerate.def.CodeResourceUtil;
+
+import java.util.List;
 import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -71,9 +74,17 @@ public class CodeGenerateFactory
 
     try
     {
+        String keyProperty = "id";
+        List<ColumnData> columnDatas = createBean.getColumnDatas(tableName);
+        for (ColumnData data : columnDatas){
+            if (data.getColumnName().equals(tableName + "_id")){
+                keyProperty = data.getFormatColumnName();
+            }
+        }
       Map sqlMap = createBean.getAutoCreateSql(tableName);
-      context.put("columnDatas", createBean.getColumnDatas(tableName));
+      context.put("columnDatas", columnDatas);
       context.put("SQL", sqlMap);
+      context.put("keyProperty", keyProperty.trim());
     } catch (Exception e) {
       e.printStackTrace();
       return;

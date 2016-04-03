@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kli.bean.BaseEntity;
-import com.kli.bean.CmsContent;
 import com.kli.bean.Page;
 import com.kli.dao.base.CrudDao;
 
@@ -54,10 +53,6 @@ public abstract class CrudService<D extends CrudDao<T>, T extends BaseEntity<T>>
 		return dao.findList(entity);
 	}
 	
-	public List<T> findAllList(T entity) {
-		return dao.findAllList(entity);
-	}
-	
 	/**
 	 * 查询分页数据
 	 * @param page 分页对象
@@ -72,7 +67,7 @@ public abstract class CrudService<D extends CrudDao<T>, T extends BaseEntity<T>>
 	
 	
 	public int queryByCount(T entity){
-		return dao.queryByCount(entity);
+		return dao.getTotal(entity);
 	}
 
 	/**

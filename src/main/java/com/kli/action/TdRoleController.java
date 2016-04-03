@@ -98,7 +98,7 @@ public class TdRoleController extends BaseController{
 	public ModelAndView toAddView(@RequestParam("categoryId") Long categoryId){
 		TdMenu category = tdMenuService.get(String.valueOf(categoryId));
 		
-		List<TdPermissions> permList = tdPermissionsService.findAllList(new TdPermissions());
+		List<TdPermissions> permList = tdPermissionsService.findList(new TdPermissions());
 		
 		ModelAndView model = new ModelAndView("admin/role/roleAdd");
 		model.addObject("category", category);
@@ -205,7 +205,7 @@ public class TdRoleController extends BaseController{
 		ModelAndView model = new ModelAndView(resView);
 		TdMenu category = tdMenuService.get(String.valueOf(categoryId));
 		
-		List<TdPermissions> allPermList = tdPermissionsService.findAllList(new TdPermissions());
+		List<TdPermissions> allPermList = tdPermissionsService.findList(new TdPermissions());
 		List<TdPermissions> hasPermList = tdPermissionsService.findListByRoleId(Integer.parseInt(roleId));
 		
 		TdRole r = new TdRole();
@@ -219,7 +219,7 @@ public class TdRoleController extends BaseController{
 	}
 	
 	public void addPermsToRole(HttpServletRequest request, int roleId){
-		List<TdPermissions> permList = tdPermissionsService.findAllList(new TdPermissions());
+		List<TdPermissions> permList = tdPermissionsService.findList(new TdPermissions());
 		tdRoleService.deleteRolePerms(roleId);
 		TdRolePerm rp = null;
 		for(TdPermissions permissions : permList){

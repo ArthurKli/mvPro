@@ -96,13 +96,7 @@ WHERE a.id=b.role_id AND b.perm_id=c.id
 	delete from td_role_perm
  where role_id = #{role_id}
 </delete>
- 
-<!-- 根据id查询 系统角色 -->
 
-<select id="queryById" resultType="TdRole">
-		select *
-	 from td_role AS a where a.id = #{id}
-</select>
 
 <select id="get" resultType="TdRole">
 		select *
@@ -110,7 +104,7 @@ WHERE a.id=b.role_id AND b.perm_id=c.id
 </select>
 
 <!-- 系统角色 列表总数-->
-<select id="queryByCount" resultType="java.lang.Integer" >
+<select id="getTotal" resultType="java.lang.Integer" >
 	select count(1) from td_role 
 	<include refid="Example_Where_Clause"/>
 </select>

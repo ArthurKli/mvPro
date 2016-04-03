@@ -97,7 +97,7 @@ public class TdUserController extends BaseController{
 	public ModelAndView toAddView(@RequestParam("categoryId") Long categoryId){
 		TdMenu category = tdMenuService.get(String.valueOf(categoryId));
 		
-		List<TdRole> roleList = tdRoleService.findAllList(new TdRole());
+		List<TdRole> roleList = tdRoleService.findList(new TdRole());
 		
 		ModelAndView model = new ModelAndView("admin/user/userAdd");
 		model.addObject("category", category);
@@ -147,7 +147,7 @@ public class TdUserController extends BaseController{
 		TdUser user = new TdUser();
 		user.setId(Integer.parseInt(userId));
 		model.addObject("category", category);
-		model.addObject("roleList", tdRoleService.findAllList(new TdRole()));
+		model.addObject("roleList", tdRoleService.findList(new TdRole()));
 		model.addObject("user", tdUserService.get(user));
 		return model;
 	}

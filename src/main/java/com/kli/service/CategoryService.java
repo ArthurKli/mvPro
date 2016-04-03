@@ -25,7 +25,7 @@ public class CategoryService extends CrudService<CategoryDao, CmsCategory> {
 	
 	public String queryTree() {
 		
-		List<CmsCategory> list = dao.findAllList(new CmsCategory());
+		List<CmsCategory> list = dao.findList(new CmsCategory());
 		List<TreeNode> treeNodes = new ArrayList<TreeNode>();
 		TreeUtil.generateTree(wrapCategoryTreeNode, "tdMenuCode", list, treeNodes, "root");
 		String treeJson = TreeUtil.getZTreeJsonData(treeNodes, 0L ,BaseConstants.TREE_TYPE_CATEGORY);

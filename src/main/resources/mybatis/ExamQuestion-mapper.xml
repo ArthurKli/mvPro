@@ -109,13 +109,6 @@ where 1=1
 	delete from exam_question
  where id = #{id}
 </delete>
- 
-<!-- 根据id查询 考试试卷 -->
-
-<select id="queryById" resultType="ExamQuestion">
-		select <include refid="Select_Column_List" /> 
-	 from exam_question where id = #{id}
-</select>
 
 <select id="get" resultType="ExamQuestion">
 		select <include refid="Select_Column_List" /> 
@@ -123,7 +116,7 @@ where 1=1
 </select>
 
 <!-- 考试试卷 列表总数-->
-<select id="queryByCount" resultType="java.lang.Integer" >
+<select id="getTotal" resultType="java.lang.Integer" >
 	select count(1) from exam_question 
 	<include refid="Example_Where_Clause"/>
 </select>
