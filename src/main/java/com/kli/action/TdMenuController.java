@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,11 +47,10 @@ public class TdMenuController extends BaseController{
 		
 		@RequestMapping(value="admin/getMenuTree")
 		@ResponseBody
-		public String getMenuTree(HttpServletRequest request){
-			
-			String treeJson = tdMenuService.queryTree();
-			
-			System.out.println("getMenuTree:" + treeJson);
+        @Cacheable(value="sysCache",key="#root.methodName")
+        public String getMenuTree(HttpServletRequest request){
+			String treeJson = tdMenuService.queryTree(null);
+            log.info("getMenuTree in db:" + treeJson);
 			return treeJson;
 		}
 	

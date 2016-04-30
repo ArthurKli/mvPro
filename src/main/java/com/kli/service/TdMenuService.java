@@ -1,22 +1,17 @@
 package com.kli.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.Resource;
-
+import com.kli.bean.TdMenu;
+import com.kli.constants.BaseConstants;
+import com.kli.dao.TdMenuDao;
+import com.kli.service.base.CrudService;
+import com.kli.tools.tree.TreeNode;
+import com.kli.tools.tree.TreeUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
 
-import com.kli.service.base.CrudService;
-import com.kli.service.base.WrapTreeNode;
-import com.kli.tools.tree.TreeNode;
-import com.kli.tools.tree.TreeUtil;
-import com.kli.bean.CmsCategory;
-import com.kli.bean.TdMenu;
-import com.kli.constants.BaseConstants;
-import com.kli.dao.TdMenuDao;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -26,11 +21,9 @@ import com.kli.dao.TdMenuDao;
  */
  @Service
 public class TdMenuService extends CrudService<TdMenuDao, TdMenu> {
-		@Resource
-		private WrapTreeNode wrapCategoryTreeNode;
 		
-		public String queryTree() {
-			
+		public String queryTree(String parentLevel) {
+
 			List<TdMenu> allList = dao.findList(new TdMenu());
 			List<TdMenu> menuList = new ArrayList<TdMenu>();
 			Subject subject = SecurityUtils.getSubject();
@@ -41,10 +34,10 @@ public class TdMenuService extends CrudService<TdMenuDao, TdMenu> {
 			}
 			
 			List<TreeNode> treeNodes = new ArrayList<TreeNode>();
-			TreeUtil.generateTree(wrapCategoryTreeNode, "menuCode", menuList, treeNodes, "root");
-			String treeJson = TreeUtil.getZTreeJsonData(treeNodes, 0L ,BaseConstants.TREE_TYPE_CATEGORY);
-			
-			logger.info(treeJson);
+			TreeUtil.generateTree(allList, treeNodes, parentLevel);
+            long pid = TreeUtil.getMenuId(allList, parentLevel);
+
+			String treeJson = TreeUtil.getZTreeJsonData(treeNodes, pid ,BaseConstants.TREE_TYPE_CATEGORY);
 			
 			return treeJson;
 		}
