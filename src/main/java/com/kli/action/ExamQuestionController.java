@@ -7,9 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kli.action.BaseController;
-import com.kli.bean.ExamQuestion;
- import com.kli.service.ExamQuestionService;
+import com.kli.service.ExamQuestionService;
 /**
  * 
  * <br>

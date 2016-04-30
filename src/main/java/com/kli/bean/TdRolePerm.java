@@ -1,6 +1,5 @@
 package com.kli.bean;
 
-import com.kli.bean.BaseEntity;
 /**
  * 
  * <br>
@@ -8,8 +7,10 @@ import com.kli.bean.BaseEntity;
  */
 public class TdRolePerm extends BaseEntity<TdRolePerm> {
 	
-		private java.lang.Integer roleId;  
-	private java.lang.Integer permId;  	private java.lang.String permType;//   
+	
+	private java.lang.Integer roleId;  
+	private java.lang.Integer permId;  
+	private java.lang.String permType;//   
 
 	public java.lang.Integer getRoleId() {
 		return roleId;
@@ -28,6 +29,7 @@ public class TdRolePerm extends BaseEntity<TdRolePerm> {
 	}
 	public void setPermType(java.lang.String permType) {
 		this.permType = permType;
-	}
+	}
+
 }
 

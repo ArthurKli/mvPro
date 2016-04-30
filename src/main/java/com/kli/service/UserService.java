@@ -9,9 +9,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import com.kli.bean.CmsContent;
 import com.kli.bean.User;
-import com.kli.dao.CmsContentDao;
 import com.kli.dao.MybatisDao;
 import com.kli.dao.UserDao;
 import com.kli.service.base.CrudService;

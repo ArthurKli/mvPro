@@ -16,18 +16,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
-import com.kli.action.BaseController;
 import com.kli.bean.BaseMsg;
 import com.kli.bean.Page;
 import com.kli.bean.TdMenu;
 import com.kli.bean.TdPermissions;
-import com.kli.bean.TdRole;
-import com.kli.bean.TdUser;
 import com.kli.constants.BaseConstants;
-import com.kli.service.CategoryService;
 import com.kli.service.TdMenuService;
 import com.kli.service.TdPermissionsService;
-import com.kli.tools.MD5Util;
 import com.kli.tools.StringUtil;
 /**
  * 

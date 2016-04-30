@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kli.bean.Goods;
 import com.kli.bean.User;
 import com.kli.service.GoodsService;
 import com.kli.service.UserService;

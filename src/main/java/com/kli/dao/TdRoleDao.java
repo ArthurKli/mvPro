@@ -1,8 +1,6 @@
 package com.kli.dao;
 
 
-import org.springframework.transaction.annotation.Transactional;
-
 import com.kli.annotation.MyBatisDao;
 import com.kli.bean.TdRole;
 import com.kli.bean.TdRolePerm;

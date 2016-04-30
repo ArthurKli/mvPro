@@ -9,7 +9,6 @@ import java.util.Properties;
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.plugin.Interceptor;
-import org.apache.tomcat.jni.Global;
 
 import com.kli.bean.Page;
 

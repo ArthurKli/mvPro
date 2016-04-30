@@ -1,7 +1,5 @@
 package com.kli.bean;
 
-import java.io.Serializable;
-
 public class User extends BaseEntity<User> {
 	private int userId;
 	private String trueName;
