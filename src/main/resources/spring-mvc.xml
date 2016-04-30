@@ -8,7 +8,7 @@
     <description>Spring MVC Configuration</description>
 	<mvc:annotation-driven>   
 	    <mvc:message-converters register-defaults="true">   
-	        <bean class="com.kli.filter.UTF8StringHttpMessageConverter"/>   
+	        <bean class="com.admin.filter.UTF8StringHttpMessageConverter"/>
 	    </mvc:message-converters>   
 	</mvc:annotation-driven> 
 	
@@ -16,14 +16,14 @@
 	
 	
 	<!-- 使用Annotation自动注册Bean,只扫描@Controller -->
-	<context:component-scan base-package="com.kli.action" use-default-filters="false"><!-- base-package 如果多个，用“,”分隔 -->
+	<context:component-scan base-package="com.admin.action" use-default-filters="false"><!-- base-package 如果多个，用“,”分隔 -->
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	
 	<mvc:interceptors>
 	<mvc:interceptor>
 		<mvc:mapping path="/test.mvc" />
-		<bean class="com.kli.filter.FirstFilter" />
+		<bean class="com.admin.filter.FirstFilter" />
 	</mvc:interceptor>
     </mvc:interceptors>
     

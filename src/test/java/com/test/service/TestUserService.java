@@ -8,8 +8,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
-import com.kli.bean.User;
-import com.kli.service.UserService;
+import com.admin.bean.User;
+import com.admin.service.UserService;
 import com.test.base.BaseJunitTest;
 
 @TransactionConfiguration(transactionManager="transactionManager")

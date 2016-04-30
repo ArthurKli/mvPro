@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.kli.dao.CategoryDao">
+<mapper namespace="com.admin.dao.CategoryDao">
 <sql id="cmsCategoryColumns">
 		c.category_id AS "categoryId",
 		c.category_name AS "categoryName",

@@ -1,9 +1,9 @@
 package ${bussPackage}.service#if($!entityPackage).${entityPackage}#end;
 
 import org.springframework.stereotype.Service;
-import com.kli.service.base.CrudService;
-import com.kli.bean.${className};
-import com.kli.dao.${className}Dao;
+import com.admin.service.base.CrudService;
+import com.admin.bean.${className};
+import com.admin.dao.${className}Dao;
 
 
 /**

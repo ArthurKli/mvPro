@@ -7,9 +7,9 @@ import javax.annotation.Resource;
 import org.junit.Test;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
-import com.kli.bean.Goods;
-import com.kli.bean.Page;
-import com.kli.service.GoodsService;
+import com.admin.bean.Goods;
+import com.admin.bean.Page;
+import com.admin.service.GoodsService;
 import com.test.base.BaseJunitTest;
 
 @TransactionConfiguration(transactionManager="transactionManager",defaultRollback = false)

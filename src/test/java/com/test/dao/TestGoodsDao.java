@@ -7,9 +7,9 @@ import javax.annotation.Resource;
 import org.junit.Test;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
-import com.kli.bean.Goods;
-import com.kli.dao.GoodsDao;
-import com.kli.dao.MybatisDao;
+import com.admin.bean.Goods;
+import com.admin.dao.GoodsDao;
+import com.admin.dao.MybatisDao;
 import com.test.base.BaseJunitTest;
 
 @TransactionConfiguration(transactionManager="transactionManager", defaultRollback = true)

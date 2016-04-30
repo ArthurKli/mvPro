@@ -19,11 +19,11 @@
 
     <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
     <context:annotation-config/>
-    <context:component-scan base-package="com.kli.annotation"/>
-    <context:component-scan base-package="com.kli.dao"/>
-    <context:component-scan base-package="com.kli.service"/>
-    <context:component-scan base-package="com.kli.tools"/>
-    <context:component-scan base-package="com.kli.security"/>
+    <context:component-scan base-package="com.admin.annotation"/>
+    <context:component-scan base-package="com.admin.dao"/>
+    <context:component-scan base-package="com.admin.service"/>
+    <context:component-scan base-package="com.admin.tools"/>
+    <context:component-scan base-package="com.admin.security"/>
     <!-- 加载配置属性文件 -->
     <context:property-placeholder ignore-unresolvable="true" location="classpath:mv.properties"/>
 
@@ -65,7 +65,7 @@
     <bean id="sqlSessionFactory"
           class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="mapperLocations" value="classpath:mybatis/*-mapper.xml"/>
-        <property name="typeAliasesPackage" value="com.kli.bean"/>
+        <property name="typeAliasesPackage" value="com.admin.bean"/>
         <property name="configLocation" value="classpath:/mybatis-config.xml"/>
         <property name="dataSource" ref="dataSource"/>
     </bean>
@@ -78,8 +78,8 @@
     </bean>
     <!-- MyBatis Data Mapper scanning.  Mappers need to be in this package or a subpackage of this. -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.kli.dao"/>
-        <property name="annotationClass" value="com.kli.annotation.MyBatisDao"/>
+        <property name="basePackage" value="com.admin.dao"/>
+        <property name="annotationClass" value="com.admin.annotation.MyBatisDao"/>
     </bean>
 
 
@@ -119,14 +119,14 @@
     <!-- Shiro Filter -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
-        <property name="loginUrl" value="/login.shtml"/>
+        <property name="loginUrl" value="admin/login.shtml"/>
         <property name="successUrl" value="/admin/home.shtml"/>
-        <property name="unauthorizedUrl" value="/error/403.shtml"/>
+        <property name="unauthorizedUrl" value="admin/error/403.shtml"/>
         <property name="filterChainDefinitions">
             <value>
-                /login.shtml = anon
-                /doLogin.shtml = anon
-                /error/** = anon
+                /admin/login.shtml = anon
+                /admin/doLogin.shtml = anon
+                /admin/error/** = anon
                 /static/** = anon
                 /userfiles/** = anon
                 /user/** = authc
@@ -143,7 +143,7 @@
         <property name="cacheManager" ref="shiroCacheManager"/>
     </bean>
 
-    <bean id="systemAuthorizingRealm" class="com.kli.security.SystemAuthorizingRealm">
+    <bean id="systemAuthorizingRealm" class="com.admin.security.SystemAuthorizingRealm">
         <property name="cachingEnabled" value="true"/>
         <!--启用身份验证缓存 在使用EhCache时请勿开启-->
         <property name="authenticationCachingEnabled" value="false"/>
@@ -153,7 +153,7 @@
     </bean>
 
     <!-- 定义授权缓存管理器 -->
-    <bean id="shiroCacheManager" class="com.kli.cache.SpringCacheManagerWrapper">
+    <bean id="shiroCacheManager" class="com.admin.cache.SpringCacheManagerWrapper">
         <property name="cacheManager" ref="cacheManager"/>
     </bean>
 

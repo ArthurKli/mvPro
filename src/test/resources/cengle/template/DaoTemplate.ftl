@@ -1,9 +1,9 @@
 package ${bussPackage}.dao#if($!entityPackage).${entityPackage}#end;
 
 
-import com.kli.annotation.MyBatisDao;
-import com.kli.dao.base.CrudDao;
-import com.kli.bean.${className};
+import com.admin.annotation.MyBatisDao;
+import com.admin.dao.base.CrudDao;
+import com.admin.bean.${className};
 
 /**
  * 

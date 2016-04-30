@@ -1,6 +1,6 @@
 package ${bussPackage}.bean#if($!entityPackage).${entityPackage}#end;
 
-import com.kli.bean.BaseEntity;
+import com.admin.bean.BaseEntity;
 /**
  * 
  * <br>

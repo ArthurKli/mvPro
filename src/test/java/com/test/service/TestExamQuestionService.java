@@ -5,8 +5,8 @@ import javax.annotation.Resource;
 import org.junit.Test;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
-import com.kli.bean.ExamQuestion;
-import com.kli.service.ExamQuestionService;
+import com.admin.bean.ExamQuestion;
+import com.admin.service.ExamQuestionService;
 import com.test.base.BaseJunitTest;
 @TransactionConfiguration(transactionManager="transactionManager",defaultRollback = false)
 public class TestExamQuestionService extends BaseJunitTest{

@@ -76,7 +76,7 @@
   </welcome-file-list>
   <servlet>
     <servlet-name>HelloAction</servlet-name>
-    <servlet-class>com.kli.action.HelloAction</servlet-class>
+    <servlet-class>com.admin.action.HelloAction</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>HelloAction</servlet-name>
@@ -86,7 +86,7 @@
     <description></description>
     <display-name>ValidateCodeServlet</display-name>
     <servlet-name>ValidateCodeServlet</servlet-name>
-    <servlet-class>com.kli.action.ValidateCodeServlet</servlet-class>
+    <servlet-class>com.admin.action.ValidateCodeServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ValidateCodeServlet</servlet-name>

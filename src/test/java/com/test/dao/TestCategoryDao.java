@@ -5,8 +5,8 @@ import javax.annotation.Resource;
 import org.junit.Test;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
-import com.kli.bean.CmsCategory;
-import com.kli.dao.CategoryDao;
+import com.admin.bean.CmsCategory;
+import com.admin.dao.CategoryDao;
 import com.test.base.BaseJunitTest;
 
 @TransactionConfiguration(transactionManager="transactionManager", defaultRollback = true)

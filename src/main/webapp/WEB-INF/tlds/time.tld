@@ -7,7 +7,7 @@
     <tag>  
         <name>dateTag</name>  
         <description>日期格式化</description>  
-        <tag-class>com.kli.tag.DateTag</tag-class>  
+        <tag-class>com.admin.tag.DateTag</tag-class>
         <body-content>JSP</body-content>  
           <attribute>  
             <name>date</name>  

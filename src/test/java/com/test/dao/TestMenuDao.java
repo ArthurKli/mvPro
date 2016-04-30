@@ -5,8 +5,8 @@ import javax.annotation.Resource;
 import org.junit.Test;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
-import com.kli.bean.TdMenu;
-import com.kli.dao.TdMenuDao;
+import com.admin.bean.TdMenu;
+import com.admin.dao.TdMenuDao;
 import com.test.base.BaseJunitTest;
 
 @TransactionConfiguration(transactionManager="transactionManager", defaultRollback = true)

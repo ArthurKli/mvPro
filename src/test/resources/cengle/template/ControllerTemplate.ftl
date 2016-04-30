@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kli.action.BaseController;
+import com.admin.action.BaseController;
 import ${bussPackage}.bean#if($!entityPackage).${entityPackage}#end.${className};
  import ${bussPackage}.service#if($!entityPackage).${entityPackage}#end.${className}Service;
 /**

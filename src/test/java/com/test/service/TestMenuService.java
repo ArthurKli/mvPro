@@ -2,7 +2,7 @@ package com.test.service;
 
 import javax.annotation.Resource;
 
-import com.kli.service.TdMenuService;
+import com.admin.service.TdMenuService;
 import org.junit.Test;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.kli.dao.CmsContentDao">
+<mapper namespace="com.admin.dao.CmsContentDao">
 <sql id="cmsContentColumns">
 		c.content_id AS "contentId",
 		c.category_id AS "categoryId",
@@ -92,20 +92,22 @@ insert into cms_content
 	
 	
 	<update id="update" >
-		update cms_content c set c.modify_time = now()
-			<if test="categoryId!=null and categoryId!=''"> , c.category_id=#{categoryId} </if>
-			<if test="contentTitle!=null and contentTitle!=''"> , c.content_title=#{contentTitle} </if>
-			<if test="contentDescription!=null and contentDescription!=''"> , c.content_description=#{contentDescription} </if>
-			<if test="contentType!=null and contentType!=''"> , c.content_type=#{contentType} </if>
-			<if test="contentPath!=null and contentPath!=''"> , c.content_path=#{contentPath} </if>
-			<if test="contentContent!=null and contentContent!=''"> , c.content_content=#{contentContent} </if>
-			<if test="contentStatus!=null and contentStatus!=''"> , c.content_status=#{contentStatus} </if>
-			<if test="createTime!=null and createTime!=''"> , c.create_time=#{createTime} </if>
-			<if test="createUser!=null and createUser!=''"> , c.create_user=#{createUser} </if>
-			<if test="modifyTime!=null and modifyTime!=''"> , c.modify_time=#{modifyTime} </if>
-			<if test="modifyUser!=null and modifyUser!=''"> , c.modify_user=#{modifyUser} </if>
-			<if test="contentExtend!=null and contentExtend!=''"> , c.content_extend=#{contentExtend} </if>
-			<if test="contentPriority!=null and contentPriority!=''"> , c.content_priority=#{contentPriority} </if>
+		update cms_content c
+        <set>
+			<if test="categoryId!=null and categoryId!=''"> c.category_id=#{categoryId}, </if>
+			<if test="contentTitle!=null and contentTitle!=''">  c.content_title=#{contentTitle}, </if>
+			<if test="contentDescription!=null and contentDescription!=''"> c.content_description=#{contentDescription} ,</if>
+			<if test="contentType!=null and contentType!=''">  c.content_type=#{contentType}, </if>
+			<if test="contentPath!=null and contentPath!=''"> c.content_path=#{contentPath}, </if>
+			<if test="contentContent!=null and contentContent!=''">  c.content_content=#{contentContent}, </if>
+			<if test="contentStatus!=null and contentStatus!=''"> c.content_status=#{contentStatus}, </if>
+			<if test="createTime!=null">  c.create_time=#{createTime}, </if>
+			<if test="createUser!=null and createUser!=''"> c.create_user=#{createUser}, </if>
+			<if test="modifyTime!=null"> c.modify_time=#{modifyTime}, </if>
+			<if test="modifyUser!=null and modifyUser!=''"> c.modify_user=#{modifyUser}, </if>
+			<if test="contentExtend!=null and contentExtend!=''"> c.content_extend=#{contentExtend}, </if>
+			<if test="contentPriority!=null and contentPriority!=''"> c.content_priority=#{contentPriority}, </if>
+        </set>
 		    where c.content_id = #{contentId}
 	</update>
 	

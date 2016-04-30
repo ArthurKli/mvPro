@@ -42,11 +42,11 @@
 
 		<!-- 类型别名 -->
 	<typeAliases>
-		<typeAlias alias="Page" type="com.kli.bean.Page" /><!--分页  -->
+		<typeAlias alias="Page" type="com.admin.bean.Page" /><!--分页  -->
 	</typeAliases>
 	
 	<!-- 插件配置 -->
 	<plugins>
-		<plugin interceptor="com.kli.persistence.PaginationInterceptor" />
+		<plugin interceptor="com.admin.persistence.PaginationInterceptor" />
     </plugins>
 </configuration>

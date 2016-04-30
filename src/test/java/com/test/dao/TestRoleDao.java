@@ -7,9 +7,9 @@ import javax.annotation.Resource;
 import org.junit.Test;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
-import com.kli.bean.TdRole;
-import com.kli.bean.TdRolePerm;
-import com.kli.dao.TdRoleDao;
+import com.admin.bean.TdRole;
+import com.admin.bean.TdRolePerm;
+import com.admin.dao.TdRoleDao;
 import com.test.base.BaseJunitTest;
 
 @TransactionConfiguration(transactionManager="transactionManager", defaultRollback = true)
