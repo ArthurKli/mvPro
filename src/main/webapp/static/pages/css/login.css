@@ -1,0 +1,170 @@
+/* CSS Document */
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	font-size:12px;
+	line-height:18px;
+	color:#464646;
+	background-color:#fff;
+	font-family:����, Arial, Helvetica, sans-serif;
+}
+html,body{
+	height:100%;
+}
+.container{
+	width:320px;
+	position:absolute;
+	left:50%;
+	top:15%;
+	margin-left:-160px;
+	padding: 0px;
+
+}
+.logo{
+	width:294px;
+	height:75px;
+	background:url(../images/logo221.jpg) no-repeat;
+	margin: 0px;
+}
+.table{
+	width:320px;
+}
+.table .top{
+	width:320px;
+	height:14px;
+	margin: 0px;
+	padding: 0px;
+}
+.table .top .t1{
+	width:14px;
+	height:13px;
+	background: url(../images/login_table_01.jpg) no-repeat;
+	float:left;
+	margin: 0px;
+}
+.table .top .t2{
+	width:292px;
+	height:14px;
+	background:url(../images/login_table_05.jpg) repeat-x;
+	float:left;
+	margin: 0px;
+}
+.table .top .t3{
+	width:14px;
+	height:14px;
+	background:url(../images/login_table_02.jpg) no-repeat;
+	float:left;
+	margin: 0px;
+}
+.bottom{margin:0px;padding:0px;}
+.table .bottom .t1{
+	width:14px;
+	height:14px;
+	background:url(../images/login_table_03.jpg) no-repeat;
+	float:left;
+}
+.table .bottom .t2{
+	width:292px;
+	height:14px;
+	background:url(../images/login_table_06.jpg) repeat-x;
+	float:left;
+	margin: 0px;
+}
+.table .bottom .t3{
+	width:14px;
+	height:14px;
+	background:url(../images/login_table_04.jpg) no-repeat;
+	float:left;
+	margin: 0px;
+}
+.table .middle .t1{
+	width:14px;
+	height:199px;
+	background:url(../images/login_table_07.jpg) repeat-y;
+	float:left;
+	margin-top: -2px;
+}
+.table .middle .t2{
+	width:292px;
+	height:197px;
+	background-color:#fff;
+	float:left;
+	margin: 0px;
+}
+.table .middle .t3{
+	width:14px;
+	height:199px;
+	background:url(../images/login_table_08.jpg) repeat-y;
+	float:left;
+	margin-top: -2px;
+	margin-right:0px;
+	margin-left:0px;margin-bottom:0px;
+}
+.row01{
+	width:278px;
+	margin:0 auto;
+}
+.row02{
+	width:264px;
+	margin:0 auto;
+	padding-top:8px;
+	font-size:14px;
+	color:#787878;
+	line-height:28px;
+}
+.txtarea{
+	width:274px;
+	height:33px;
+	padding-left:2px;
+	border:1px solid #c8c8c8;
+	line-height:33px;
+	font-size:18px;
+	color:#464646;
+}
+.row03{
+	width:264px;
+	margin:0 auto;
+	padding-top:3px;
+	font-size:14px;
+	color:#787878;
+	line-height:28px;
+}
+.row04{
+	width:278px;
+	margin:0 auto;
+	font-size:14px;
+	color:#787878;
+	height:60px;
+}
+.row04 a{
+	padding-left:10px;
+	color:#2275ac;
+	text-decoration:underline;
+}
+.row04 a:hover{
+	color:#2275ac;
+	text-decoration:underline;
+}
+.row04 span{
+	color:#2275ac;
+}
+.f{
+	float:left;
+}
+.r{
+	float:right;
+	padding-right:5px;
+}
+.login_button{
+	width:55px;
+	height:25px;
+	background:url(../images/button05.jpg) no-repeat;
+	/*color:#fff;*/
+	line-height:25px;
+	text-align:center;
+	font-size:14px;
+	border:none;
+	cursor:pointer;
+}

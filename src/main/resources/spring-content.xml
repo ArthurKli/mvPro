@@ -133,7 +133,7 @@
                 /admin/role* = perms[perm:manage]
                 /admin/user* = perms[perm:manage]
                 /role/list = perms[role:view]
-                /** = authc
+                /admin/** = authc
             </value>
         </property>
     </bean>

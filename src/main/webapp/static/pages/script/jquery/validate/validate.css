@@ -1,0 +1,22 @@
+@CHARSET "UTF-8";
+.errorElement{
+	BORDER: red 2px dashed;
+}
+.errorMessage {
+	BORDER: #b22828 1px solid;
+	FONT-SIZE: 12px;
+	COLOR: #b22828;
+	LINE-HEIGHT: 22px;
+	BACKGROUND-COLOR: #fffed7
+}
+input.errorMessage{
+	BORDER: #b22828 1px dashed;
+}
+select.errorMessage{
+	BORDER: #b22828 1px dashed;
+}
+textarea.errorMessage{
+	BORDER: #b22828 1px dashed;
+}
+
+

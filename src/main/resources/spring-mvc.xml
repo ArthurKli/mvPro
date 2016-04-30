@@ -16,7 +16,7 @@
 	
 	
 	<!-- 使用Annotation自动注册Bean,只扫描@Controller -->
-	<context:component-scan base-package="com.admin.action" use-default-filters="false"><!-- base-package 如果多个，用“,”分隔 -->
+	<context:component-scan base-package="com.admin.action,com.page.action" use-default-filters="false"><!-- base-package 如果多个，用“,”分隔 -->
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	
@@ -33,6 +33,7 @@
 	<!-- 定义视图文件解析 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/"/>
+
 		<property name="suffix" value=".jsp"/>
 	</bean>
 		<!-- 对静态资源文件的访问， 将无法mapping到Controller的path交给default servlet handler处理 -->

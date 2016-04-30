@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>兼容IE6的jquery动感在线客服 - 站长素材</title>
+    <style type="text/css">
+    * { padding: 0; margin: 0; font-size: 12px; }
+	body{height:2000px;} 
+    ul { list-style: none; }
+    a { text-decoration: none; }
+    </style>
+    <link rel="stylesheet" href="css/kefu.css">
+    <script src="js/jquery.js"></script>
+</head>
+<body>
+<div id="box-kefu">
+    <div class="kefu-close"></div>
+    <div class="kefu-open">
+        <div>
+        <ul>
+            <li><a href="http://wpa.qq.com/msgrd?v=3&uin=2785022017&site=qq&menu=yes" target="_blank" title="欢迎联系"><i class="online"></i>在线客服1</a></li>
+            <li><a href="http://wpa.qq.com/msgrd?v=3&uin=441955140&site=qq&menu=yes" target="_blank"><i class="online"></i>在线客服2</a></li>
+            <li><a href="http://wpa.qq.com/msgrd?v=3&uin=584352379&site=qq&menu=yes" target="_blank"><i class="qq"></i>在线客服3</a></li>
+            <li><a href="http://www.97zzw.com/plus/guestbook.php#liuyan" target="_blank"><i class="txt"></i>咨询留言</a></li>
+        </ul>
+        </div>
+        <a href="javascript:;" class="close">关闭</a>
+    </div>
+</div>
+<script>var online= new Array();</script>
+<script src="http://webpresence.qq.com/getonline?Type=1&2785022017:441955140:584352379:"></script>
+<script>
+(function($){
+    for (var i=0; i<online.length; i++) {
+        if (online[i]) jQuery("#box-kefu .qq").eq(i).addClass("online");
+    }
+    var _open = $("#box-kefu").find(".kefu-open"),
+        _close = $("#box-kefu").find(".kefu-close");
+    _open.find("a").hover(function(){
+        $(this).stop(true,true).animate({paddingLeft:20},200).find("i").stop(true,true).animate({left:75},200);
+    },function(){
+        $(this).stop(true,true).animate({paddingLeft:35},200).find("i").stop(true,true).animate({left:10},200);
+    });
+    
+
+    _open.find(".close").click(function(){
+        _open.animate({width:148},200,function(){
+            _open.animate({width:0},200,function(){
+                _close.animate({width:34},200);
+
+            });
+        });
+    });
+    _close.click(function(){
+        _close.animate({width:44},200,function(){
+            _close.animate({width:0},200,function(){
+                _open.animate({width:138},200);
+            });
+        });
+    });
+})(jQuery)
+</script>
+<div style="text-align:center;clear:both">
+<p>适用浏览器：IE8、360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. </p>
+<p>来源：<a href="http://sc.chinaz.com/" target="_blank">站长素材</a></p>
+</div>
+</body>
+</html>

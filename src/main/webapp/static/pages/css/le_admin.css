@@ -1,0 +1,45 @@
+.brand{
+	font-family: Helvetica, Georgia, Arial, sans-serif, 黑体;
+font-size: 26px;
+padding-left: 33px;
+display: block;
+float: left;
+padding: 10px 20px 10px;
+font-weight: 200;
+color: #777;
+text-shadow: 0 1px 0 #fff;
+	
+	}
+	
+.navbar .nav .pull-right {
+float: right;
+margin-right: 0;
+}
+
+.navbar .nav {
+position: relative;
+left: 0;
+display: block;
+float: left;
+margin: 0 10px 0 0;
+}
+
+.navbar .nav>li {
+float: left;
+}
+
+.navbar .nav>li>a {
+float: none;
+padding: 10px 15px 10px;
+color: #777;
+text-decoration: none;
+text-shadow: 0 1px 0 #fff;
+}
+.navbar-inner{
+	border-width: 0 0 1px;
+	background-image: linear-gradient(to bottom,#fff,#f2f2f2);
+background-repeat: repeat-x;
+border: 1px solid #d4d4d4;
+	
+	}
+	

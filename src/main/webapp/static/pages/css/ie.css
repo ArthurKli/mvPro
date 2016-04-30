@@ -1,0 +1,6 @@
+﻿@charset "utf-8";
+/* CSS Document */
+* html .clearFix,*+html .clearFix{zoom: 1;}
+
+.view{zoom:1;}
+#mybg{filter:Alpha(opacity=30);}
