@@ -58,7 +58,7 @@
 		<tr>
 		<c:if test="${enableToAdd }"><td class="del-checkbox"><input  id="del-checkbox-${content.contentId }" type="checkbox"></td></c:if>
 				<td>${content.contentId }</td>
-				<td><a href="${basePath }content/${category.id}/${content.contentId }.shtml" target="_brank" title="${content.contentTitle }">${fn:substring(content.contentTitle, 0, 20)}<c:if test="${fn:length(content.contentTitle) > 20}">...</c:if></a></td>
+				<td><a href="${pageContext.request.contextPath}/content/${category.id}/${content.contentId }.shtml" target="_brank" title="${content.contentTitle }">${fn:substring(content.contentTitle, 0, 20)}<c:if test="${fn:length(content.contentTitle) > 20}">...</c:if></a></td>
 				<td>${content.contentSubTitle }</td>
 				<td>${content.contentPriority }</td>
 				<td><t:dateTag date="${content.createTime }"  pattern="yyyy-MM-dd HH:mm:ss"></t:dateTag></td>

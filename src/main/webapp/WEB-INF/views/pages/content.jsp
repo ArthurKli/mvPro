@@ -27,7 +27,7 @@
             <div class="li_links li_links2">           
                <ul class="tool">
                     <li><a href="http://www.boc.cn/sourcedb/whpj/" class="whpj"><img src="${pages }/images/ico/ico1.png" alt=""><span><fmt:message key="common.userful.link1" bundle="${main }" /></span></a></li>
-                    <li><a href="http://www.rs.realestate.com.au/cgi-bin/rsearch?a=calc&jar=LoanRepayment&t=res" target="_blank"><img src="${pages }/style/images/ico/ico2.png" alt=""><span><fmt:message key="common.userful.link2" bundle="${main }" /></span></a></li>
+                    <li><a href="http://www.rs.realestate.com.au/cgi-bin/rsearch?a=calc&jar=LoanRepayment&t=res" target="_blank"><img src="${pages }/images/ico/ico2.png" alt=""><span><fmt:message key="common.userful.link2" bundle="${main }" /></span></a></li>
                     <li><a href="http://www.smh.com.au/money/tools-and-guides/calculators/stamp-duty" target="_blank"><img src="${pages }/images/ico/ico3.png" alt=""><span><fmt:message key="common.userful.link3" bundle="${main }" /></span></a></li>
                     <li><a href="http://www.aozhouditu.com/" class="dt"><img src="${pages }/images/ico/ico4.png" alt=""><span><fmt:message key="common.userful.link4" bundle="${main }" /></span></a></li>
                     <li><a href="http://tianqi.2345.com/oceania_australia/?qq-pf-to=pcqq.c2c" class="tq"><img src="${pages }/images/ico/ico5.png" alt=""><span><fmt:message key="common.userful.link5" bundle="${main }" /></span></a></li>
