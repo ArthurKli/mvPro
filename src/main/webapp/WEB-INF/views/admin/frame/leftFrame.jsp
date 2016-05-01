@@ -1,5 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/include/taglib.jsp"%>
+<%@ include file="/WEB-INF/views/admin/include/taglib.jsp"%>
 <%@ page isELIgnored="false"%>
 
 <html>

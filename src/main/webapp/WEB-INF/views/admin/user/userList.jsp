@@ -1,10 +1,10 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@include file="/WEB-INF/views/include/taglib.jsp" %>
+<%@include file="/WEB-INF/views/admin/include/taglib.jsp" %>
 <!DOCTYPE html>
 <html>
   <head>
     <title></title>
-	<%@include file="/WEB-INF/views/include/head.jsp" %>
+	<%@include file="/WEB-INF/views/admin/include/head.jsp" %>
   </head>
   <body>
     <div class="map mapAdd">

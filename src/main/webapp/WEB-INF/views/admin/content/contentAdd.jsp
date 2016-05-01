@@ -1,10 +1,10 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@include file="/WEB-INF/views/include/taglib.jsp" %>
+<%@include file="/WEB-INF/views/admin/include/taglib.jsp" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>添加项目</title>
-		<%@include file="/WEB-INF/views/include/head.jsp" %>
+		<%@include file="/WEB-INF/views/admin/include/head.jsp" %>
 		<script type="text/javascript" src="${ctxStatic }/ckeditor/ckeditor.js"></script>
 		<script type="text/javascript" src="${ctxStatic }/ckfinder/ckfinder.js"></script>
 	</head>

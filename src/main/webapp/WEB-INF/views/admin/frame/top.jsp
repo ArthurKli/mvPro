@@ -1,6 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@ page isELIgnored="false"%>
-<%@ include file="/WEB-INF/views/include/taglib.jsp"%>
+<%@ include file="/WEB-INF/views/admin/include/taglib.jsp"%>
 <!DOCTYPE html>
 <html>
 	<head>

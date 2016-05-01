@@ -1,13 +1,13 @@
 
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ include file="/WEB-INF/views/include/taglib.jsp"%>
+<%@ include file="include/taglib.jsp"%>
 <html>
 <head>
 	<title>登录111</title>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="renderer" content="webkit"><meta http-equiv="X-UA-Compatible" content="IE=8,IE=9,IE=10" />
 <meta http-equiv="Expires" content="0"><meta http-equiv="Cache-Control" content="no-cache"><meta http-equiv="Cache-Control" content="no-store">
-<%@include file="/WEB-INF/views/include/head.jsp" %>
+<%@include file="include/head.jsp" %>
 <script type="text/javascript">var ctx = '${ctx}', ctxStatic='${ctxStatic}';</script>
 	<style type="text/css">
 html, body, table {
